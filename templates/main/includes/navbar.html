@@ -1,0 +1,34 @@
+  <nav>
+    <div class="nav-wrapper blue">
+
+      <a href="/homepage" style="font-size:25px" class ="text-light noHover">
+
+          <img src="https://exceptionless.com/assets/cloud-icon.png" class='logo' >
+          NullDrive
+
+      </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/homepage">Home</a></li>
+        {% if user.is_authenticated %}
+             <li><a href="/user">{{user.username|title}}'s files</a></li>
+             <li><a href="/logout">Logout</a></li>
+        {% else %}
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+      {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success'%}
+                <script>M.toast({html: "{{message}}", classes: 'green rounded', displayLength:2000});</script>
+            {% elif message.tags == 'info'%}
+                <script>M.toast({html: "{{message}}", classes: 'blue rounded', displayLength:2000});</script>
+            {% elif message.tags == 'warning'%}
+                <script>M.toast({html: "{{message}}", classes: 'orange rounded', displayLength:10000});</script>
+            {% elif message.tags == 'error'%}
+                <script>M.toast({html: "{{message}}", classes: 'red rounded', displayLength:10000});</script>
+            {% endif %}
+        {% endfor %}
+    {% endif %}

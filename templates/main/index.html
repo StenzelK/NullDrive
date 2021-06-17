@@ -1,0 +1,22 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+<br/>
+<h1>Hi {{username}}!</h1>
+<br/>
+
+Used space:
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{percent}}"
+  aria-valuemin="0" aria-valuemax="100" style="width:{{percent}}%">
+      <span class="">{{used}}/{{max_dir}}</span>
+  </div>
+</div>
+<br/>
+<button type="button" class="btn btn-primary btn-block"><a href="/change_pass" class="text-light">Change password</a></button>
+<br/>
+<button type="button" class="btn btn-primary btn-block"><a href="/delete_user" class="text-light">Delete account</a></button>
+<br/>
+
+
+{% endblock %}

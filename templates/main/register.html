@@ -1,0 +1,14 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+<br/>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <p>
+         <button style="background-color:#2196f3; color:white" class="btn btn-outline-info" type="submit">Sign Up</button>
+    </form>
+
+{% endblock %}

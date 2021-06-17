@@ -1,0 +1,127 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+<br/>
+<div>
+<form class="box" method="post"enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="upload" multiple>
+
+    <button style="background-color:#2196f3; color:white" class="btn btn-outline-info" type="submit" id="load" data-loading-text="<i class='spinner-border '></i> Uploading">
+
+        Upload</button>
+</form>
+</div>
+<br/>
+<div >
+{% for img in images%}
+
+    <div style="width: 250px; height: 350px; float:left; border-style: solid; border-width: 1px; margin:5px">
+
+
+            <table valign="center"  border="0px" style="width: 250px; height:100%;" >
+              <tr height="210px">
+                <th class="tg-0lax" colspan="2">
+                     <center><img src="media/userfiles/{{username}}/{{img}}" class="prev"></center>
+                </th>
+              </tr>
+              <tr height="50px">
+                <td class="tg-0lax text" colspan="2">
+                    <center>{{img}}</center>
+                </td>
+              </tr>
+              <tr height="50px">
+                  <td class="tg-0lax">
+                      <center>
+                        <a href="media/userfiles/{{username}}/{{img}}" style="background-color:#2196f3; color:white" class="btn btn-outline-info" download="{{img}}">
+
+                            <img src="https://cdn.shoplo.com/1450/files/download_icon.png?158" width="20px" height="20px">
+
+                        </a>
+                      </center>
+                  </td>
+                  <td class="tg-0lax">
+                    <center>
+                        <form class="box" method="post"enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="filename" value="{{img}}">
+                            <button style="background-color:#DC143C; color:white" class="btn btn-outline-info" type="submit">
+                                <img src="https://cdn.iconscout.com/icon/free/png-256/delete-737-475058.png" width="20px" height="20px">
+                            </button>
+                        </form>
+
+                    </center>
+                  </td>
+               </tr>
+            </table>
+
+    </div>
+
+
+{% endfor %}
+</div>
+<div>
+{% for file in other%}
+
+    <div style="width: 250px; height: 350px; float:left; border-style: solid; border-width: 1px; margin:5px">
+
+        <a href="media/userfiles/{{username}}/{{file}}" download="{{file}}">
+            <table valign="center"  border="0px" style="width: 250px; height:100%;" >
+              <tr height="210px">
+                <th class="tg-0lax" colspan="2">
+                     <center><img src="https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png" class="prev"></center>
+                </th>
+              </tr>
+              <tr height="50px">
+                <td class="tg-0lax text" colspan="2">
+                    <center>{{file}}</center>
+                </td>
+              </tr>
+                <tr height="50px">
+                  <td class="tg-0lax">
+                      <center>
+                        <a href="media/userfiles/{{username}}/{{file}}" style="background-color:#2196f3; color:white" class="btn btn-outline-info" download="{{file}}">
+
+                            <img src="https://cdn.shoplo.com/1450/files/download_icon.png?158" width="20px" height="20px">
+
+                        </a>
+                      </center>
+                  </td>
+                  <td class="tg-0lax">
+                    <center>
+                        <form class="box" method="post"enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="filename" value="{{file}}">
+                            <button style="background-color:#DC143C; color:white" class="btn btn-outline-info" type="submit">
+                                <img src="https://cdn.iconscout.com/icon/free/png-256/delete-737-475058.png" width="20px" height="20px">
+                            </button>
+                        </form>
+
+                    </center>
+                  </td>
+               </tr>
+            </table>
+        </a>
+
+    </div>
+
+
+
+{% endfor %}
+</div>
+<br>
+
+<script>
+
+
+$('.btn').on('click', function() {
+    var $this = $(this);
+  $this.button('loading');
+    setTimeout(function() {
+       $this.button('reset');
+   }, 8000);
+});
+
+
+</script>
+{% endblock %}
